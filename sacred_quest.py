@@ -33,6 +33,19 @@ mountains = {
     "porcupine_pass": "no"
 }
 
+def get_user_choice(choices):
+    """Return the choice from the user, selected from the given choices.
+
+    choices must be a list of strings.
+    """
+    choices_prompt = ", ".join(choices)
+
+    while True:
+        print("(Type: " + choices_prompt + "): ", end="")
+        user_choice = input()
+        if user_choice in choices:
+            return user_choice
+
 
 def mountains_porcupinepass():
     print('Navigating a ridge, the ground suddenly feels softer and fleshy')
@@ -184,10 +197,7 @@ def mountain_miser_encounter():
 def first_item_Scene():
     print('You can only carry one item.  Choose wisely:\n')
     items = ['sword','orb','cloak']
-    userInput = ""
-    while userInput not in items:
-        print("(Type: sword, orb, cloak): ", end = "")
-        userInput = input()
+    userInput = get_user_choice(items)
     if userInput == 'sword':
         print('\nWooden sword of the sprites!')
         print('You are destined to be a warrior!  Dont be clumsy with that...\n')
