@@ -34,15 +34,26 @@ mountains = {
 }
 
 
+def get_user_choice(choices):
+    """Return the choice from the user, selected from the given choices.
+
+    choices must be a list of strings.
+    """
+    choices_prompt = ", ".join(choices)
+
+    while True:
+        print("(Type: " + choices_prompt + "): ", end="")
+        user_choice = input()
+        if user_choice in choices:
+            return user_choice
+
+
 def mountains_porcupinepass():
     print('Navigating a ridge, the ground suddenly feels softer and fleshy')
     print('Suddenly stone needles jut from the earth until you are surrounded.')
     print('How do you try to escape?')
     options = ['fight through', 'tickle']
-    userInput = ""
-    while userInput not in options:
-        print("(Type: fight through, tickle): ", end = "")
-        userInput = input()
+    userInput = get_user_choice(options)
     if userInput == 'fight through':
         if key_item['sword'] == 'yes':
             print('As you slash the first spike you hear a monstrous roar and the earth shakes...')
@@ -96,10 +107,7 @@ def lunch_hermitcave():
     print('The codworms pop between your teeth as you sit on a mossy stone in the cave')
     print('-What are you seeking, traveler?- Hogbog asks.\n')
     answers = ['seek power', 'seek love', 'seek mystery']
-    userInput = ""
-    while userInput not in answers:
-        print("(Type: power, love, mystery): ", end = "")
-        userInput = input()
+    userInput = get_user_choice(answers)
     if userInput == 'power':
         print('-I sought power once- Hogbog whispers into the cooking fire.')
         print('He pulls out a gold ring from his ragged tunic and fondles it with a look of madness.')
@@ -153,10 +161,7 @@ def mountain_miser_encounter():
     print('As you venture uphill and the trees thin, you see a haggard hermit peeking at you from a cave.\n')
     print('Your heart quickens.  What will you do?')
     actions = ['attack','befriend']
-    userInput = ""
-    while userInput not in actions:
-        print("(Type: attack, befriend): ", end = "")
-        userInput = input()
+    userInput = get_user_choice(actions)
     if userInput == 'attack':
         if key_item['sword'] == 'yes':
             print("With a single slash you cut the lonely soul down.\n")
@@ -184,10 +189,7 @@ def mountain_miser_encounter():
 def first_item_Scene():
     print('You can only carry one item.  Choose wisely:\n')
     items = ['sword','orb','cloak']
-    userInput = ""
-    while userInput not in items:
-        print("(Type: sword, orb, cloak): ", end = "")
-        userInput = input()
+    userInput = get_user_choice(items)
     if userInput == 'sword':
         print('\nWooden sword of the sprites!')
         print('You are destined to be a warrior!  Dont be clumsy with that...\n')
@@ -210,10 +212,7 @@ def first_item_Scene():
 def firstpath_choice():
     print('Very good.  But the path splits here.  Will you go toward the mountains or the river?\n')
     firstpath_choices = ['mountains','river']
-    userInput = ""
-    while userInput not in firstpath_choices:
-        print("(Type: mountains, river): ", end = "")
-        userInput = input()
+    userInput = get_user_choice(firstpath_choices)
     if userInput == 'mountains':
         print('\nTaking the high-ground! It will strengthen you, if you do not fall!')
         mountain_miser_encounter()
